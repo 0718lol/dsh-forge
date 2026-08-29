@@ -1,0 +1,33 @@
+name: Publish
+
+on:
+  workflow_dispatch:
+    inputs:
+      package:
+        description: "Which package to publish"
+        required: true
+        type: choice
+        options:
+          - @dshforge/create
+          - @dshforge/cli
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write # npm provenance
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          registry-url: https://registry.npmjs.org/
+      - name: Publish ${{ inputs.package }}
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          case "${{ inputs.package }}" in
+            "@dshforge/create") DIR=packages/create-dsh-plugin ;;
+            "@dshforge/cli")    DIR=packages/forge ;;
+          esac
+          npm publish "$DIR" --access public
