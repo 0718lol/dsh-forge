@@ -43,5 +43,10 @@
     "pet",
     "fun"
   ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.yml"
+    }
+  },
   "license": "MIT"
 }

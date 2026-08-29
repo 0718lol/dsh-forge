@@ -41,5 +41,10 @@
     "deepseek",
     "deepseek-harness"
   ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.yml"
+    }
+  },
   "license": "MIT"
 }
