@@ -1,0 +1,48 @@
+name: CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+
+jobs:
+  toolchain:
+    name: toolchain tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Scaffold a plugin from the template (E2E)
+        run: node packages/create-dsh-plugin/index.js smoke-plugin --no-install --dry-run=false
+      # The scaffolded plugin is verified by the compat job below; here we
+      # at least assert the CLI entry points load and respond.
+      - name: CLI smoke
+        run: |
+          node packages/forge/src/cli.js --help
+          node packages/create-dsh-plugin/index.js --help
+
+  compat:
+    name: compat · dsh-tools ${{ matrix.dsh-tools }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        dsh-tools: ["0.1.0-rc.8", "0.1.1-rc.1", "0.1.1-rc.2"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Scaffold plugin
+        run: node packages/create-dsh-plugin/index.js smoke-plugin --no-install
+      - name: Install with pinned dsh-tools
+        working-directory: smoke-plugin
+        run: npm install --no-audit --no-fund && npm install -D @deepseek-ai/dsh-tools@${{ matrix.dsh-tools }} --no-audit --no-fund
+      - name: Build
+        working-directory: smoke-plugin
+        run: npm run build
+      - name: Test
+        working-directory: smoke-plugin
+        run: npm test

@@ -1,0 +1,4 @@
+# DeepSeek Harness plugin patch — attach this plugin to a running harness:
+#   npx @deepseek-ai/dsh web --patch ./cordis.yml
+# The loader mounts each entry; '.' resolves to this package (see "main" in package.json).
+- name: '.'

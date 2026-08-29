@@ -1,0 +1,31 @@
+{
+  "name": "@dshforge/cli",
+  "version": "0.1.0",
+  "description": "Developer toolchain for DeepSeek Harness (DSH) plugins: check, compat-test against published dsh-tools versions, and publish. Run as: dsh-forge",
+  "type": "module",
+  "bin": {
+    "dsh-forge": "src/cli.js"
+  },
+  "files": [
+    "src"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "deepseek",
+    "deepseek-harness",
+    "plugin",
+    "toolchain",
+    "compatibility",
+    "cli"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/0718lol/dsh-forge.git",
+    "directory": "packages/forge"
+  }
+}

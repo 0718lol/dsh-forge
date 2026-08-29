@@ -1,0 +1,32 @@
+{
+  "name": "@dshforge/create",
+  "version": "0.1.0",
+  "description": "Scaffold a DeepSeek Harness (DSH) plugin in seconds — TypeScript, tests, and defensive patterns baked in. Usage: npm create @dshforge my-plugin",
+  "type": "module",
+  "bin": {
+    "create": "index.js"
+  },
+  "files": [
+    "index.js",
+    "template"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "deepseek",
+    "deepseek-harness",
+    "plugin",
+    "scaffold",
+    "cli",
+    "create"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/0718lol/dsh-forge.git",
+    "directory": "packages/create-dsh-plugin"
+  }
+}

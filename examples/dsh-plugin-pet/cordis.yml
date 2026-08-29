@@ -1,0 +1,3 @@
+# Attach the pet to a running harness:
+#   npx @deepseek-ai/dsh web --patch ./cordis.yml
+- name: '.'

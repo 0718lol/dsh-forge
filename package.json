@@ -1,0 +1,28 @@
+{
+  "name": "dsh-forge",
+  "private": true,
+  "version": "0.1.0",
+  "description": "The developer toolchain for the DeepSeek Harness (DSH) plugin ecosystem: scaffold, compat-test, and ship plugins.",
+  "license": "MIT",
+  "type": "module",
+  "workspaces": [
+    "packages/*",
+    "examples/*"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/0718lol/dsh-forge.git"
+  },
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "deepseek",
+    "deepseek-harness",
+    "agent",
+    "plugin",
+    "toolchain"
+  ]
+}
