@@ -37,6 +37,9 @@ jobs:
           node-version: 20
       - name: Scaffold plugin
         run: node packages/create-dsh-plugin/index.js smoke-plugin --no-install
+      - name: Use local forge CLI package
+        working-directory: smoke-plugin
+        run: npm pkg set 'devDependencies.@dshforge/cli=file:../packages/forge'
       - name: Install with pinned dsh-tools
         working-directory: smoke-plugin
         run: npm install --legacy-peer-deps --no-audit --no-fund && npm install -D @deepseek-ai/dsh-tools@${{ matrix.dsh-tools }} --legacy-peer-deps --no-audit --no-fund
