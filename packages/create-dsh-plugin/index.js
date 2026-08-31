@@ -131,9 +131,10 @@ console.log(`
   ${PM_RUN[pm]} test       # unit tests
   ${PM_RUN[pm]} compat     # test against published @deepseek-ai/dsh-tools versions
 
-Attach the plugin to a running harness:
+Attach the plugin to a running harness (from this directory):
 
-  npx @deepseek-ai/dsh web --patch ./cordis.yml
+  npx @deepseek-ai/dsh plugin --profile web add .
+  npx @deepseek-ai/dsh web
 
 Forge docs: https://github.com/0718lol/dsh-forge
 `)

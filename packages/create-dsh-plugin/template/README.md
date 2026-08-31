@@ -11,11 +11,16 @@ A [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) (DSH) plug
 
 ## Try it in a harness
 
+From this directory:
+
 ```sh
-npx @deepseek-ai/dsh web --patch ./cordis.yml
+npx @deepseek-ai/dsh plugin --profile web add .
+npx @deepseek-ai/dsh web
 ```
 
 Then ask the agent: *“Use the greet tool to greet Ada.”*
+
+> `dsh plugin add` records the plugin under its **directory name** (pnpm link semantics) — that's what `cordis.yml` mounts by. After publishing to npm and installing there, the package name takes over.
 
 ## Develop
 

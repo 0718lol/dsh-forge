@@ -1,3 +1,7 @@
-# Attach the pet to a running harness:
-#   npx @deepseek-ai/dsh web --patch ./cordis.yml
-- name: '.'
+# Attach the pet to a running harness (from this directory):
+#   npx @deepseek-ai/dsh plugin --profile web add .
+#   npx @deepseek-ai/dsh web
+# name 必须与安装进 profile 时的记录名一致：`dsh plugin add .` 按目录名记录。
+- insert:
+    - id: pet
+      name: dsh-plugin-pet

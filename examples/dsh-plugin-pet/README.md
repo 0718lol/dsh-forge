@@ -12,8 +12,11 @@ A companion whale that lives in your [DeepSeek Harness](https://github.com/deeps
 
 ## Try it
 
+From this directory:
+
 ```sh
-npx @deepseek-ai/dsh web --patch ./cordis.yml
+npx @deepseek-ai/dsh plugin --profile web add .
+npx @deepseek-ai/dsh web
 ```
 
 Then ask the agent: *“Check on my pet, then feed it a fish.”*

@@ -33,7 +33,8 @@ npm create @dshforge my-plugin
 cd my-plugin
 npm run dev        # build in watch mode
 npm test           # unit tests — no harness required
-npx @deepseek-ai/dsh web --patch ./cordis.yml   # attach to a harness
+npx @deepseek-ai/dsh plugin --profile web add .  # attach to a harness (one-time)
+npx @deepseek-ai/dsh web                         # the plugin is live
 ```
 
 Ask the agent: *"Use the greet tool to greet Ada."* You're live.

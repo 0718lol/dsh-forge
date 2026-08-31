@@ -33,7 +33,8 @@ npm create @dshforge my-plugin
 cd my-plugin
 npm run dev        # watch 模式构建
 npm test           # 单元测试——不需要跑着 harness
-npx @deepseek-ai/dsh web --patch ./cordis.yml   # 挂到 harness 上
+npx @deepseek-ai/dsh plugin --profile web add .  # 挂到 harness（一次性）
+npx @deepseek-ai/dsh web                         # 插件上线
 ```
 
 然后对 agent 说："Use the greet tool to greet Ada." 你的第一个插件就上线了。

@@ -1,4 +1,18 @@
-# DeepSeek Harness plugin patch — attach this plugin to a running harness:
-#   npx @deepseek-ai/dsh web --patch ./cordis.yml
-# The loader mounts each entry; '.' resolves to this package (see "main" in package.json).
-- name: '.'
+# DeepSeek Harness plugin patch — the bundle manifest in package.json points here.
+#
+# Attach your plugin to a running harness (from this directory):
+#
+#   npx @deepseek-ai/dsh plugin --profile web add .
+#   npx @deepseek-ai/dsh web
+#
+# dsh patch layers use INSERT semantics to add entries. A bare `- name: .`
+# is rejected ("id is required for non-insert patches"), and a plain
+# `- id: x, name: .` is treated as an override of an existing entry
+# ("entry x not found").
+#
+# `name` must match how the plugin is installed into the profile:
+# `dsh plugin add .` records the DIRECTORY basename (via pnpm link);
+# a plugin installed from npm is recorded under its package name.
+- insert:
+    - id: {{PLUGIN_SHORT_NAME}}
+      name: {{PLUGIN_SHORT_NAME}}

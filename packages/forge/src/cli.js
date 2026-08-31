@@ -202,6 +202,21 @@ async function check() {
     warnings.push('package.json "files" should include cordis.yml so consumers can attach your published package')
   }
 
+  if (!pkg.files && !existsSync(join(root, 'cordis.yml'))) {
+    warnings.push('cordis.yml not found — the dsh.bundle manifest points here and dsh plugin add needs it to activate the plugin')
+  } else if (existsSync(join(root, 'cordis.yml'))) {
+    const patch = readFileSync(join(root, 'cordis.yml'), 'utf8')
+    // dsh patch layers apply with INSERT semantics; bare entries are
+    // silently skipped ("id is required for non-insert patches") and the
+    // plugin never mounts — verified against dsh-app-boot.
+    if (/^\s*-\s+(id|name):/m.test(patch) && !/insert:/.test(patch)) {
+      issues.push('cordis.yml uses bare entries — dsh patch layers require insert semantics: wrap in `- insert:` with `id` + `name`, or the plugin silently never mounts')
+    }
+    if (/^\s*-\s+name:\s*['"]?\.\s*['"]?\s*$/m.test(patch)) {
+      issues.push("cordis.yml mounts name: '.' — ESM cannot import a directory and patch specifiers resolve against the profile directory, not the plugin; mount the installed package or directory name instead")
+    }
+  }
+
   for (const w of warnings) console.log(`⚠ ${w}`)
   if (issues.length > 0) {
     for (const i of issues) console.error(`✗ ${i}`)
@@ -300,9 +315,10 @@ async function dev() {
   const root = requirePluginRoot()
   console.log(`→ type-checking & building in watch mode (tsc --watch)…
 
-Attach to a running harness (separate terminal):
+Attach to a running harness (from this directory, one-time per profile):
 
-  npx @deepseek-ai/dsh web --patch ${join(root, 'cordis.yml')}
+  npx @deepseek-ai/dsh plugin --profile web add .
+  npx @deepseek-ai/dsh web
 
 Cordis hot-reloads the plugin when dist/ output changes. Press Ctrl+C to stop.
 `)
