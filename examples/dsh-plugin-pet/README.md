@@ -2,6 +2,8 @@
 
 A companion whale that lives in your [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness). Feed it, play with it, check on it — the reference example plugin built with [dsh-forge](https://github.com/0718lol/dsh-forge).
 
+> Verified against a real harness (`@deepseek-ai/dsh` 0.1.1-rc.2): `dsh plugin add` → mounted as a profile layer → clean boot with all three tools registered.
+
 ## What it demonstrates
 
 - Registering multiple tools with `ctx.tools.register(defineTool({ ... }))`
