@@ -29,7 +29,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        dsh-tools: ["0.1.0-rc.8", "0.1.1-rc.1", "0.1.1-rc.2"]
+        # The scaffold declares >=0.1.1-rc.2 as its supported API floor.
+        dsh-tools: ["0.1.1-rc.2"]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
