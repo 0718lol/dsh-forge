@@ -15,7 +15,7 @@ jobs:
         with:
           node-version: 20
       - name: Scaffold a plugin from the template (E2E)
-        run: node packages/create-dsh-plugin/index.js smoke-plugin --no-install --dry-run=false
+        run: node packages/create-dsh-plugin/index.js smoke-plugin --no-install
       # The scaffolded plugin is verified by the compat job below; here we
       # at least assert the CLI entry points load and respond.
       - name: CLI smoke
