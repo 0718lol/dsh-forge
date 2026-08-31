@@ -39,7 +39,7 @@ jobs:
         run: node packages/create-dsh-plugin/index.js smoke-plugin --no-install
       - name: Install with pinned dsh-tools
         working-directory: smoke-plugin
-        run: npm install --no-audit --no-fund && npm install -D @deepseek-ai/dsh-tools@${{ matrix.dsh-tools }} --no-audit --no-fund
+        run: npm install --legacy-peer-deps --no-audit --no-fund && npm install -D @deepseek-ai/dsh-tools@${{ matrix.dsh-tools }} --legacy-peer-deps --no-audit --no-fund
       - name: Build
         working-directory: smoke-plugin
         run: npm run build
